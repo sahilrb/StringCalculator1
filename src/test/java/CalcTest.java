@@ -45,9 +45,8 @@ public class CalcTest {
 
         @Test
         public void delimiters() {
-            Assert.assertEquals(6,calc.Add("//;\n\n1;2;3"));
+                Assert.assertEquals(3,calc.Add("//;\n1;2"));
         }
-
 
 
     }
