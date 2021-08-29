@@ -49,7 +49,7 @@ public class CalcTest {
             try {
                 calc.Add("1,2,-3,4,-5,6");
             } catch (IllegalArgumentException e) {
-                Assert.assertEquals("Negative not allowed: -3,-5", e.getMessage());
+                Assert.assertEquals("Negative numbers not allowed: -3,-5", e.getMessage());
             }
         }
     @Test
@@ -57,7 +57,7 @@ public class CalcTest {
         try {
             calc.Add("-5");
         } catch (IllegalArgumentException e) {
-            Assert.assertEquals("Negative not allowed: -5",e.getMessage());
+            Assert.assertEquals("Negative numbers not allowed: -5",e.getMessage());
         }
     }
     @Test
@@ -68,5 +68,14 @@ public class CalcTest {
     @Test
     public void SingleGT1000Ignored() {
         Assert.assertEquals(0,calc.Add("5000"));
+    }
+
+    public void randomDelimiter() {
+        Assert.assertEquals(15,calc.Add("//[xxx]\n1xxx2xxx3xxx4xxx5"));
+    }
+
+    @Test
+    public void multipleDelimiters() {
+        Assert.assertEquals(6,calc.Add("//[a][b]\n1c2d3"));
     }
 }
