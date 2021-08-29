@@ -12,7 +12,7 @@ public class Calc {
         }
     }
     public int sumNumbers(String[] nums){
-        int SUM=0;
+        int SUM = 0;
         for(String each : nums){
             SUM += Integer.parseInt(each);
         }
