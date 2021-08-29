@@ -24,4 +24,14 @@ public class CalcTest {
     public void sumofTwoValue() {
         Assert.assertEquals(3,calc.Add("1,2"));
     }
+
+    @Test
+    public void sumofTwoValue() {
+        Assert.assertEquals(3,calc.Add("1,2"));
+    }
+
+    @Test
+    public void sumofMultipleValue() {
+        Assert.assertEquals(6,calc.Add("1,2,3"));
+    }
 }
