@@ -17,25 +17,25 @@ public class CalcTest {
 
         @Test
         public void isSingle() {
-            Assert.assertEquals(1,calc.Add("1"));
+            Assert.assertEquals(3, calc.Add("3"));
         }
 
         @Test
-            public void sumofTwo() {
-                Assert.assertEquals(3,calc.Add("1,2"));
+            public void SumofTwo() {
+                Assert.assertEquals(3, calc.Add("1,2"));
             }
 
         @Test
-            public void sumofMultiple() {
-                Assert.assertEquals(15,calc.Add("1,2,3,4,5"));
+            public void SumofMultiple() {
+                Assert.assertEquals(15, calc.Add("1,2,3,4,5"));
             }
 
         @Test
-        public void sumofMultipleNewline() {
+        public void SUMofMultipleNewline() {
                 Assert.assertEquals(21,calc.Add("1,2\n3\n4,5,6"));
             }
         @Test
-        public void onlyNewline() {
+        public void Newline() {
             Assert.assertEquals(0,calc.Add("\n\n\n\n\n\n"));
         }
 
@@ -47,9 +47,9 @@ public class CalcTest {
         @Test
         public void negativeNumber() {
             try {
-                calc.Add("1,2,-3,4,-5,6");
+                calc.Add("1,2,-8,4,-10,6");
             } catch (IllegalArgumentException e) {
-                Assert.assertEquals("Negative numbers not allowed: -3,-5", e.getMessage());
+                Assert.assertEquals("Negative numbers not allowed: -8,-10", e.getMessage());
             }
         }
     @Test
@@ -61,12 +61,12 @@ public class CalcTest {
         }
     }
     @Test
-    public void GT1000Ignored() {
-        Assert.assertEquals(111,calc.Add("1001,100,10,1"));
+    public void Ignored1000() {
+        Assert.assertEquals(111,calc.Add("20002,1001,100,10,1"));
     }
 
     @Test
-    public void SingleGT1000Ignored() {
+    public void SingleD1000Ignored() {
         Assert.assertEquals(0,calc.Add("5000"));
     }
 
@@ -82,6 +82,6 @@ public class CalcTest {
 
     @Test
     public void multipleDelimitersofAnyLength() {
-        Assert.assertEquals(10, calc.Add("//[**][,][;]\n1**2,3,,4"));
+        Assert.assertEquals(10, calc.Add("//[**][,][;]\n1**2,3,4"));
     }
 }

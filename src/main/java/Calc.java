@@ -9,12 +9,12 @@ public class Calc {
         }
 
         String[] nums;
-        String delimiter;
+        String deli;
         String newIP = numbers;
 
         if (numbers.startsWith("//")) {
             if (isMultiDelimiter(numbers)) {
-                delimiter = Character.toString(numbers.charAt(2));
+                deli = Character.toString(numbers.charAt(2));
                 newIP = numbers.substring(4);
             } else {
                 List<Integer> lst = new ArrayList<>();
@@ -54,14 +54,14 @@ public class Calc {
                         s.append("|");
                     }
                 }
-                    delimiter = s.toString();
-                    newIP = numbers.substring(last + 2);
+                deli = s.toString();
+                newIP = numbers.substring(last + 2);
             }
         }
         else{
-                delimiter = ("[,\n]");
+                deli = ("[,\n]");
             }
-            nums = newIP.split(delimiter);
+            nums = newIP.split(deli);
             return sumNumbers(nums);
         }
 
@@ -71,7 +71,7 @@ public class Calc {
 
         private int sumNumbers (String[]nums){
             int SUM = 0;
-            ingoreNegatives(nums);
+            ignoreNegatives(nums);
             for (String each : nums) {
                 if (Integer.parseInt(each) <= 1000) {
                     SUM += Integer.parseInt(each);
@@ -80,20 +80,20 @@ public class Calc {
             return SUM;
         }
 
-        private void ingoreNegatives (String[]nums){
-            String checkNegative = negativeChecker(nums);
+        private void ignoreNegatives (String[]nums){
+            String checkNegative = CheckNegative(nums);
             if(!checkNegative.isEmpty()) {
                 throw new IllegalArgumentException("Negative numbers not allowed: " + checkNegative);
             }
         }
 
-        private String negativeChecker (String[]nums){
-            List<String> number = new ArrayList<>();
-            for (String val : nums) {
-                if (Integer.parseInt(val) < 0) {
-                    number.add(val);
-                }
+    private String CheckNegative(String[] nums) {
+        List<String> number = new ArrayList<>();
+        for(String val:nums) {
+            if(Integer.parseInt(val) < 0) {
+                number.add(val);
             }
-            return String.join(",", number);
         }
+        return String.join(",", number);
     }
+}
