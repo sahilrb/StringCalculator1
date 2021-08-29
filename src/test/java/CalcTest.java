@@ -64,4 +64,9 @@ public class CalcTest {
     public void GT1000Ignored() {
         Assert.assertEquals(111,calc.Add("1001,100,10,1"));
     }
+
+    @Test
+    public void SingleGT1000Ignored() {
+        Assert.assertEquals(0,calc.Add("5000"));
+    }
 }
