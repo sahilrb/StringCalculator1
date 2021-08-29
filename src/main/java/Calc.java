@@ -8,6 +8,14 @@ public class Calc {
             String[] nums = numbers.split(",");
             int sum = Integer.parseInt(nums[0]) + Integer.parseInt(nums[1]);
             return sum;
+            return sumNumbers(nums);
         }
+    }
+    public int sumNumbers(String[] nums){
+        int SUM=0;
+        for(String each : nums){
+            SUM += Integer.parseInt(each);
+        }
+        return SUM;
     }
 }
