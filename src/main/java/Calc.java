@@ -1,50 +1,81 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calc {
-    StringBuffer NegativeNumbers = new StringBuffer();
 
     public int Add(String numbers) {
         if (numbers.length() == 0) {
             return 0;
         }
-        else if (numbers.length() == 1) {
-            int temp = Integer.parseInt(numbers);
-            if(temp < 0) {
-                throw new IllegalArgumentException("Negative not allowed: "+ String.valueOf(temp));
+
+        String[] nums = null;
+        String delimiter = null;
+        String newIP = numbers;
+
+        if (numbers.startsWith("//")) {
+            if (isMultiDelimiter(numbers)) {
+                delimiter = Character.toString(numbers.charAt(2));
+                newIP = numbers.substring(4);
+            } else {
+                delimiter = delimiterSplitter(numbers);
+                newIP = substringGenerator(numbers);
             }
-            return temp;
         }
-        else {
-            int temp = 0;
-            if(numbers.matches("//(.)\n(.*)")) {
-                char delimiter = numbers.charAt(2);
-                String newStr = numbers.substring(4);
-                String[] nums = newStr.split(Character.toString(delimiter));
-                temp = sumNumbers(nums);
+        else{
+                delimiter = "[,\n]";
             }
-            else {
-                String[] nums = numbers.split(",|\n");
-                temp = sumNumbers(nums);
-            }
-            if(!NegativeNumbers.toString().isEmpty()){
-                throw new IllegalArgumentException("Negative not allowed: "+ NegativeNumbers.toString());
-            }
-            return temp;
+            nums = newIP.split(delimiter);
+            return sumNumbers(nums);
         }
-    }
-    public int sumNumbers(String[] nums){
-        int SUM = 0;
-        for(String each : nums){
-            if(Integer.parseInt(each) < 0) {
-                if(NegativeNumbers.toString().isEmpty()) {
-                    NegativeNumbers.append(each.toString());
-                } else {
-                    NegativeNumbers.append(","+each.toString());
+
+        private Boolean isMultiDelimiter (String input){
+            return (input.charAt(2) == '[' ? false : true);
+        }
+
+        private String delimiterSplitter (String input){
+            int begin = input.indexOf('[');
+            int last = input.indexOf(']');
+            return input.substring(begin + 1, last);
+        }
+
+        private String substringGenerator (String input){
+            int last = input.indexOf(']');
+            return input.substring(last + 2);
+        }
+
+        private int sumNumbers (String[]nums){
+            int SUM = 0;
+            ingoreNegatives(nums);
+            for (String each : nums) {
+                if (Integer.parseInt(each) <= 1000) {
+                    SUM += Integer.parseInt(each);
                 }
             }
-            if(Integer.parseInt(each) > 1000) {
-                continue;
-            }
-            SUM += Integer.parseInt(each);
+            return SUM;
         }
-        return SUM;
+
+        private void ingoreNegatives (String[]nums){
+            String checkNegative = negativeChecker(nums);
+            if (!isEmpty(checkNegative)) {
+                throw new IllegalArgumentException("Negative numbers not allowed: " + checkNegative);
+            }
+        }
+
+        private String negativeChecker (String[]nums){
+            List<String> number = new ArrayList<String>();
+            for (String val : nums) {
+                if (Integer.parseInt(val) < 0) {
+                    number.add(val);
+                }
+            }
+            return lstToStr(number);
+        }
+
+        private boolean isEmpty (String number){
+            return number.isEmpty();
+        }
+
+        private String lstToStr (List < String > nums) {
+            return String.join(",", nums);
+        }
     }
-}
