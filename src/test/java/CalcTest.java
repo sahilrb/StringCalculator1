@@ -36,6 +36,7 @@ public class CalcTest {
 
     @Test
     public void sumofMultipleNewline() {
-        Assert.assertEquals(15,calc.Add("1,2,3,\n4,5"));
+            Assert.assertEquals(15,calc.Add("1,2,3\n4,5"));
+        }
     }
 }

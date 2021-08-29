@@ -5,7 +5,7 @@ public class Calc {
         } else if (numbers.length() == 1) {
             return Integer.parseInt(numbers);
         } else {
-            String[] nums = numbers.split(",");
+            String[] nums = numbers.split(",|\n");
             int sum = Integer.parseInt(nums[0]) + Integer.parseInt(nums[1]);
             return sum;
             return sumNumbers(nums);
