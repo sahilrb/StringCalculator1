@@ -79,4 +79,9 @@ public class CalcTest {
     public void multipleDelimiters() {
         Assert.assertEquals(10,calc.Add("//[;][,][;]\n1;2,3;4"));
     }
+
+    @Test
+    public void multipleDelimitersofAnyLength() {
+        Assert.assertEquals(10, calc.Add("//[**][,][;]\n1**2,3,,4"));
+    }
 }
