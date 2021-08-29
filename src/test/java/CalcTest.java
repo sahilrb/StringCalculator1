@@ -28,5 +28,6 @@ public class CalcTest {
     @Test
     public void sumofMultipleValue() {
         Assert.assertEquals(6,calc.Add("1,2,3"));
+        Assert.assertEquals(15,calc.Add("1,2,3,4,5"));
     }
 }
