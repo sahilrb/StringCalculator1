@@ -17,8 +17,28 @@ public class Calc {
                 delimiter = Character.toString(numbers.charAt(2));
                 newIP = numbers.substring(4);
             } else {
-                delimiter = delimiterSplitter(numbers);
-                newIP = substringGenerator(numbers);
+                List<Integer> lst = new ArrayList<>();
+                int len = numbers.length();
+                int begin = numbers.indexOf('[');
+                while (begin >= 0) {
+                    lst.add(begin);
+                    begin = numbers.indexOf('[',begin + 1);
+                }
+                if(lst.size() > 1) {
+                    delimiter = "[";
+                    len = lst.size();
+
+                    for(int i = 0; i < len; i++) {
+                        int right = lst.get(i);
+                        delimiter += numbers.substring(right + 1, right + 2);
+                    }
+                    delimiter += "]";
+                    int left = lst.get(len - 1);
+                    newIP = numbers.substring(left + 4);
+                } else {
+                    delimiter = delimiterSplitter(numbers);
+                    newIP = substringGenerator(numbers);
+                }
             }
         }
         else{
@@ -56,7 +76,7 @@ public class Calc {
 
         private void ingoreNegatives (String[]nums){
             String checkNegative = negativeChecker(nums);
-            if (!isEmpty(checkNegative)) {
+            if(!checkNegative.isEmpty()) {
                 throw new IllegalArgumentException("Negative numbers not allowed: " + checkNegative);
             }
         }
@@ -68,14 +88,6 @@ public class Calc {
                     number.add(val);
                 }
             }
-            return lstToStr(number);
-        }
-
-        private boolean isEmpty (String number){
-            return number.isEmpty();
-        }
-
-        private String lstToStr (List < String > nums) {
-            return String.join(",", nums);
+            return String.join(",", number);
         }
     }

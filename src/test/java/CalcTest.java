@@ -70,12 +70,13 @@ public class CalcTest {
         Assert.assertEquals(0,calc.Add("5000"));
     }
 
+    @Test
     public void randomDelimiter() {
         Assert.assertEquals(15,calc.Add("//[xxx]\n1xxx2xxx3xxx4xxx5"));
     }
 
     @Test
     public void multipleDelimiters() {
-        Assert.assertEquals(6,calc.Add("//[a][b]\n1c2d3"));
+        Assert.assertEquals(10,calc.Add("//[;][,][;]\n1;2,3;4"));
     }
 }
