@@ -12,22 +12,30 @@ public class CalcTest {
 
     @Test
     public void isEmptyCheck() {
-        Assert.assertEquals(0,calc.Add(""));
-    }
+        public void isEmpty() {
+            Assert.assertEquals(0,calc.Add(""));
+        }
 
     @Test
     public void isSingleValue() {
+    public void isSingle() {
         Assert.assertEquals(1,calc.Add("1"));
     }
 
     @Test
     public void sumofTwoValue() {
-        Assert.assertEquals(3,calc.Add("1,2"));
-    }
+        public void sumofTwo() {
+            Assert.assertEquals(3,calc.Add("1,2"));
+        }
 
     @Test
     public void sumofMultipleValue() {
-        Assert.assertEquals(6,calc.Add("1,2,3"));
-        Assert.assertEquals(15,calc.Add("1,2,3,4,5"));
+        public void sumofMultiple() {
+            Assert.assertEquals(15,calc.Add("1,2,3,4,5"));
+        }
+
+    @Test
+    public void sumofMultipleNewline() {
+        Assert.assertEquals(15,calc.Add("1,2,3,\n4,5"));
     }
 }
